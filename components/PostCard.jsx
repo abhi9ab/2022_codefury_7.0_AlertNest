@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 
-const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
+const PostCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
@@ -13,7 +13,6 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   const [copied, setCopied] = useState("");
 
   const handleProfileClick = () => {
-    console.log(post);
 
     if (post.creator._id === session?.user.id) return router.push("/profile");
 
@@ -21,7 +20,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   };
 
   return (
-    <div className='flex-1 rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit'>
+    <div className='flex-1 rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[300px] w-full h-fit'>
       <div className='flex justify-between items-start gap-5'>
         <div
           className='flex-1 flex justify-start items-center gap-3 cursor-pointer'
@@ -47,7 +46,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
 
       </div>
 
-      <p className='my-4 font-serif text-sm text-gray-700'>{post.description}</p>
+      <p className='my-4 font-serif text-sm text-gray-700 '>{post.description}</p>
       <p
         className='text-sm text-blue-400 cursor-pointer'
         onClick={() => handleTagClick && handleTagClick(post.disasterType)}
@@ -56,23 +55,25 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
       </p>
 
       {session?.user.id === post.creator._id && pathName === "/profile" && (
-        <div className='mt-5 flex-center gap-4 border-t border-gray-100 pt-3'>
-          <p
-            className='text-smcursor-pointer'
+        <div className='mt-5 flex justify-center gap-4 border-t border-gray-100 pt-3'>
+          <button
+            className='rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center'
             onClick={handleEdit}
+            type="button"
           >
             Edit
-          </p>
-          <p
-            className='text-sm cursor-pointer'
+          </button>
+          <button
+            className='rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center'
             onClick={handleDelete}
+            type="button"
           >
             Delete
-          </p>
+          </button>
         </div>
       )}
     </div>
   );
 };
 
-export default PromptCard;
+export default PostCard;

@@ -9,7 +9,7 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
       </h1>
       <p className='mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl text-left'>{desc}</p>
 
-      <div className='mt-10 space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3'>
+      <div className='mt-10 space-x-6 py-8 sm:gap-6 flex justify-start flex-wrap'>
         {data.map((post) => (
           <PostCard
             key={post._id}

@@ -1,3 +1,5 @@
+import GoogleMaps from "@components/GoogleMaps";
+
 const Home = () => (
   <section className='w-full flex-col justify-center items-center'>
     <h1 className='mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl text-center'  >
@@ -11,7 +13,7 @@ const Home = () => (
         access to reliable information, insufficient education on disaster
         response, and fragmented communication channels
     </p>
-
+    <GoogleMaps />
   </section>
 );
 

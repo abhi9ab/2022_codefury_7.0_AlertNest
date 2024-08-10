@@ -17,7 +17,7 @@ export const GET = async (request, { params }) => {
 }
 
 export const PATCH = async (request, { params }) => {
-    const { description, disasterType, latitute, longitude } = await request.json();
+    const { description, disasterType, latitude, longitude } = await request.json();
 
     try {
         await connectToDB();
@@ -30,6 +30,8 @@ export const PATCH = async (request, { params }) => {
 
         existingPost.description = description;
         existingPost.disasterType = disasterType;
+        existingPost.latitude = latitude;
+        existingPost.longitude = longitude;
 
         await existingPost.save();
 
@@ -42,12 +44,12 @@ export const PATCH = async (request, { params }) => {
 export const DELETE = async (request, { params }) => {
     try {
         await connectToDB();
+        console.log(params.id)
+        await Post.findByIdAndDelete(params.id);
 
-        // Find the prompt by ID and remove it
-        await Post.findByIdAndRemove(params.id);
-
-        return new Response("Prompt deleted successfully", { status: 200 });
+        return new Response("Post deleted successfully", { status: 200 });
     } catch (error) {
+        console.error("Error deleting post:", error);
         return new Response("Error deleting post", { status: 500 });
     }
 };

@@ -6,7 +6,7 @@ import PostCard from "@components/PostCard";
 
 const PostCardList = ({ data, handleTagClick }) => {
   return (
-    <div className='mt-16 block w-full rounded-md border border-gray-200 bg-white py-2.5 font-serif pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0'>
+    <div className='mt-10 space-x-6 py-8 sm:gap-6 flex justify-start flex-wrap'>
       {data.map((post) => (
         <PostCard
           key={post._id}
@@ -21,7 +21,6 @@ const PostCardList = ({ data, handleTagClick }) => {
 const Feed = () => {
   const [allPosts, setAllPosts] = useState([]);
 
-  // Search states
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
@@ -51,10 +50,10 @@ const Feed = () => {
     clearTimeout(searchTimeout);
     setSearchText(e.target.value);
 
-    // debounce method
+
     setSearchTimeout(
       setTimeout(() => {
-        const searchResult = filterPrompts(e.target.value);
+        const searchResult = filterPosts(e.target.value);
         setSearchedResults(searchResult);
       }, 500)
     );
@@ -68,19 +67,19 @@ const Feed = () => {
   };
 
   return (
-    <section className='mt-16 mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2'>
-      <form className='relative w-full flex justify-center'>
+    <section className='mt-16 mx-auto border border-black w-full flex-col justify-center items-center gap-2'>
+      <form className='flex relative w-full justify-center'>
         <input
           type='text'
           placeholder='Search for disaster'
           value={searchText}
           onChange={handleSearchChange}
           required
-          className='block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0'
+          className='block w-fit rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0'
         />
       </form>
 
-      {/* All Prompts */}
+
       {searchText ? (
         <PostCardList
           data={searchedResults}
