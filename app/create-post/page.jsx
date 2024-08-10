@@ -32,7 +32,7 @@ const CreatePost = () => {
             });
     
             if (response.ok) {
-            router.push("/");
+            router.push("/feed");
             }
         } catch (error) {
           console.log(error);

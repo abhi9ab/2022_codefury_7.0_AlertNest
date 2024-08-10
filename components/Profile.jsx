@@ -1,9 +1,26 @@
-import React from 'react'
 
-const Profile = () => {
+import PostCard from "./PostCard";
+
+const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
   return (
-    <div>Profile</div>
-  )
-}
+    <section className='w-full'>
+      <h1 className='mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl text-left'>
+        <span className='text-blue-400'>{name} Profile</span>
+      </h1>
+      <p className='mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl text-left'>{desc}</p>
 
-export default Profile
+      <div className='mt-10 space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3'>
+        {data.map((post) => (
+          <PostCard
+            key={post._id}
+            post={post}
+            handleEdit={() => handleEdit && handleEdit(post)}
+            handleDelete={() => handleDelete && handleDelete(post)}
+          />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Profile;
