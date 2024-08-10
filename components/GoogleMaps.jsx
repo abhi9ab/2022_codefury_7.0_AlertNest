@@ -1,29 +1,27 @@
 'use client';
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
-const containerStyle = {
-  width: '1000px',
-  height: '560px'
-};
 
 const center = {
   lat: -3.745,
   lng: -38.523
 };
 
-const GoogleMaps = () => {
+
+const GoogleMaps = ({ googleMapsApiKey }) => {
+
     const [allPosts, setAllPosts] = useState([]);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY
+    googleMapsApiKey: googleMapsApiKey
   })
 
   const [map, setMap] = React.useState(null)
 
   const onLoad = React.useCallback(function callback(map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
+
     const bounds = new window.google.maps.LatLngBounds(center);
     map.fitBounds(bounds);
 
@@ -48,7 +46,7 @@ const GoogleMaps = () => {
   }, []);
 
   return isLoaded ? (
-    <div className="w-full h-96 md:w-[1000px] md:h-[560px] my-10 ">
+    <div className="w-full h-96 md:w-[1150px] md:h-[560px] my-10 ">
       <GoogleMap
         mapContainerStyle={{ width: '100%', height: '100%' }}
         center={center}
@@ -61,7 +59,7 @@ const GoogleMaps = () => {
         }}
       >
         {allPosts.map((post) => (
-          <MarkerF 
+          <Marker 
             key={post._id} 
             position={{ lat: post.latitude, lng: post.longitude }} 
             title={post.description} 

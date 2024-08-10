@@ -13,7 +13,7 @@ const Home = () => (
         access to reliable information, insufficient education on disaster
         response, and fragmented communication channels
     </p>
-    <GoogleMaps />
+    <GoogleMaps googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY}/>
   </section>
 );
 

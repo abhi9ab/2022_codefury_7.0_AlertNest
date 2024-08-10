@@ -37,7 +37,7 @@ const Feed = () => {
   }, []);
 
   const filterPosts = (searchtext) => {
-    const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
+    const regex = new RegExp(searchtext, "i");
     return allPosts.filter(
       (item) =>
         regex.test(item.creator.username) ||
@@ -67,7 +67,7 @@ const Feed = () => {
   };
 
   return (
-    <section className='mt-16 mx-auto border border-black w-full flex-col justify-center items-center gap-2'>
+    <section className='mt-16 mx-auto w-full flex-col justify-center items-center gap-2'>
       <form className='flex relative w-full justify-center'>
         <input
           type='text'
