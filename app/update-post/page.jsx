@@ -14,7 +14,7 @@ const UpdatePost = () => {
     description: "",
     disasterType: "",
     latitude: "",
-    longitude: ""
+    longitude: "",
   });
   const [submitting, setIsSubmitting] = useState(false);
 
@@ -27,7 +27,7 @@ const UpdatePost = () => {
         description: data.description,
         disasterType: data.disasterType,
         latitude: data.latitude,
-        longitude: data.longitude
+        longitude: data.longitude,
       });
     };
 
@@ -47,7 +47,7 @@ const UpdatePost = () => {
           description: post.description,
           disasterType: post.disasterType,
           latitude: post.latitude,
-          longitude: post.longitude
+          longitude: post.longitude,
         }),
       });
 
@@ -64,26 +64,26 @@ const UpdatePost = () => {
   const getLocation = (e) => {
     e.preventDefault();
     if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(
-            (position) => {
-                setPost((prevPost) => ({
-                    ...prevPost,
-                    latitude: position.coords.latitude.toString(),
-                    longitude: position.coords.longitude.toString(),
-                }));
-            },
-            (error) => {
-                console.error("Error getting location:", error);
-            }
-        );
+      navigator.geolocation.watchPosition(
+        (position) => {
+          setPost((prevPost) => ({
+            ...prevPost,
+            latitude: position.coords.latitude.toString(),
+            longitude: position.coords.longitude.toString(),
+          }));
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+        }
+      );
     } else {
-        console.log("Geolocation is not supported by this browser.");
+      console.log("Geolocation is not supported by this browser.");
     }
-};
+  };
 
   return (
     <Form
-      type='Edit'
+      type="Edit"
       post={post}
       setPost={setPost}
       submitting={submitting}
