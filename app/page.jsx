@@ -8,7 +8,7 @@ const Home = () => (
       <span className='text-center text-amber-700'> risks zones & guides</span>
     </h1>
     <p className='mt-5 text-lg text-gray-600 sm:text-xl max-w-full text-center '>
-        alertnest is an open-source disaster preparedness app which is created to enhance disaster
+        Alertnest is an open-source disaster preparedness app which is created to enhance disaster
         preparedness and response, addressing issues such as limited
         access to reliable information, insufficient education on disaster
         response, and fragmented communication channels

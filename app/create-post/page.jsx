@@ -9,7 +9,12 @@ const CreatePost = () => {
     const router = useRouter();
     const { data: session } = useSession();
     const [submitting, setIsSubmitting] = useState(false);
-    const [post, setPost] = useState({ description: "", disasterType: "" });
+    const [post, setPost] = useState({
+        description: "",
+        disasterType: "",
+        latitude: "",
+        longitude: ""
+    });
 
     const createPost = async (e) => {
         e.preventDefault();
@@ -21,6 +26,8 @@ const CreatePost = () => {
                 description: post.description,
                 userId: session?.user.id,
                 disasterType: post.disasterType,
+                latitude: Number(post.latitude),
+                longitude: Number(post.longitude)
             }),
             });
     
@@ -32,7 +39,28 @@ const CreatePost = () => {
         } finally {
           setIsSubmitting(false);
         }
-      };
+    };
+
+    const getLocation = (e) => {
+        e.preventDefault();
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(
+                (position) => {
+                    setPost((prevPost) => ({
+                        ...prevPost,
+                        latitude: position.coords.latitude.toString(),
+                        longitude: position.coords.longitude.toString(),
+                    }));
+                },
+                (error) => {
+                    console.error("Error getting location:", error);
+                }
+            );
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    };
+
 
     return (
         <Form
@@ -41,6 +69,7 @@ const CreatePost = () => {
           setPost={setPost}
           submitting={submitting}
           handleSubmit={createPost}
+          getLocation={getLocation}
         />
     );
     

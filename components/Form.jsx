@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { useEffect } from "react";
 
-const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+
+const Form = ({ type, post, setPost, submitting, handleSubmit, getLocation }) => {
+
   return (
     <section className='w-full max-w-full justify-start flex-col'>
       <h1 className='mt-5 text-3xl font-extrabold leading-[1.15] text-black sm:text-4xl text-left'>
@@ -43,6 +46,35 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             required
             className='w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500'
           />
+        </label>
+
+        <label>
+          <span className='font-serif font-semibold text-base text-gray-700'>
+            Geolocation (If necessary)
+          </span>
+          <div className="flex justify-start items-center gap-3">
+            <input
+              value={post.latitude}
+              onChange={(e) => setPost({ ...post, latitude: e.target.value })}
+              type='text'
+              placeholder='latitude'
+              className='w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500'
+            />
+            <input
+              value={post.longitude}
+              onChange={(e) => setPost({ ...post, longitude: e.target.value })}
+              type='text'
+              placeholder='longitude'
+              className='w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500'
+            />
+            <button
+              type="button"
+              onClick={getLocation}
+              className='rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center'
+            >
+              location
+            </button>
+          </div>
         </label>
 
         <div className='flex justify-end mx-3 mb-5 gap-4'>
