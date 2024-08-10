@@ -10,8 +10,6 @@ const PostCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   const pathName = usePathname();
   const router = useRouter();
 
-  const [copied, setCopied] = useState("");
-
   const handleProfileClick = () => {
 
     if (post.creator._id === session?.user.id) return router.push("/profile");
