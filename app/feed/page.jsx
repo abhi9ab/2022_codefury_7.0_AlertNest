@@ -6,7 +6,7 @@ import PostCard from "@components/PostCard";
 
 const PostCardList = ({ data, handleTagClick }) => {
   return (
-    <div className='mt-10 space-x-6 py-8 sm:gap-6 flex justify-start flex-wrap'>
+    <div className='mt-10 py-8 px-8 sm:gap-6 flex justify-between flex-wrap items-center'>
       {data.map((post) => (
         <PostCard
           key={post._id}
