@@ -1,4 +1,4 @@
-[codefury 7.0 hackothon](https://codefury.tech/)
+[codefury 7.0 hackathon 2024](https://codefury.tech/)  
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
